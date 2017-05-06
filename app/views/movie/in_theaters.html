@@ -1,0 +1,22 @@
+<!--电影列表开始-->
+<app-process></app-process>
+<div class="list">
+    <ul>
+        <li ng-repeat="movie in movies track by movie.id">
+            <a ui-sref="detail({id:movie.id})">
+                <img ng-src="{{movie.images.large}}" alt="">
+            </a>
+            <div class="meta">
+                <h4><span>{{movie.title}}</span> <em>{{movie.rating.average}}分</em></h4>
+                <div class="otherinfo">类型:<span>{{movie.genres.join('、')}}</span></div>
+            </div>
+        </li>
+    </ul>
+    <div class="paging">
+        <label>总共：{{movieCount}}条记录,第{{currentPage}}/{{totalPages}}页;</label>
+        <!-- 加上disable类样式，表示按钮禁用状态 -->
+        <button ng-class="{'prev':true,'disable':currentPage === 1 }" ng-click="showMoviesByPage(currentPage-1)">上一页</button>
+        <button ng-class="{'next':true,'disable':currentPage === totalPages}" ng-click="showMoviesByPage(currentPage+1)">下一页</button>
+    </div>
+</div>
+<!--电影列表结束-->

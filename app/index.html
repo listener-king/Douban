@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <title>电影展示</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/wap.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+<body ng-app="app">
+    <div class="top">
+        <div class="header" ng-controller="mainController">
+            <a href="#/home_page"><img src="assets/img/logo.png" alt=""></a>
+            <div class="search">
+                <input ng-model="q" class="my-input" type="text" placeholder="电影搜索">
+                <button ng-click="search(q)">搜索</button>
+            </div>
+        </div>
+        <nav class="nav" ng-controller="activeController">
+            <ul>
+                <!--li中添加 active 类样式，显示焦点状态。-->
+                <!-- <a ui-sref="in_theaters({movieType:'top250',q:''})">Top250</a></li> -->
+                <!-- 我们的四个页面都通过movieType的方式，请求对应的地址 -->
+                <li ng-class="selectedNum === 1?'active':''"><a ui-sref="home_page">首页</a></li>
+                <li ng-class="selectedNum === 2?'active':''"><a ui-sref="in_theaters({movieType:'in_theaters',q:''})">正在热映</a></li>
+                <li ng-class="selectedNum === 3?'active':''"><a ui-sref="in_theaters({movieType:'coming_soon',q:''})">即将上映</a></li>
+                <li ng-class="selectedNum === 4?'active':''"><a ui-sref="in_theaters({movieType:'top250',q:''})">Top250</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <!-- 留坑 -->
+        <ui-view></ui-view>
+        <!--其他-->
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p>版权所有&copy; 前端与移动开发学院 火骑士空空(允许侵权)</p>
+        </div>
+    </footer>
+    <!-- 引入angular相关包 -->
+    <script type="text/javascript" src="./angular/angular.js"></script>
+    <script type="text/javascript" src="./angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="assets/js/prefixfree.min.js"></script>
+    <script src="app.js"></script>
+    <!--引入服务对象-->
+    <script type="text/javascript" src="./services/jsonpService.js"></script>
+</body>
+
+</html>
